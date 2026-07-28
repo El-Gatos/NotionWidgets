@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock Widget</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); border-radius: 30px; padding: 20px; text-align: center; font-family: 'Courier New', monospace; color: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
+        <div style="font-size: 12px; opacity: 0.7; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px;">Current Time</div>
+        <div id="clock" style="font-size: 48px; font-weight: bold; letter-spacing: 4px;">00:00</div>
+        <div id="date" style="font-size: 12px; opacity: 0.6; margin-top: 10px;"></div>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}`;
+            
+            const options = { weekday: 'short', month: 'short', day: 'numeric' };
+            const dateStr = now.toLocaleDateString('en-US', options);
+            document.getElementById('date').textContent = dateStr;
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>
